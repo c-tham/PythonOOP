@@ -48,16 +48,24 @@ print md2.add([1], 3,4).add([3,5,7,8], [2,4.3,1.25]).subtract(2, [2,3], [1.1,2.3
 
 class MathDojo3(MathDojo2):
     def add(self, *nums):
-        super(MathDojo2, self).add()
         for num in nums:
+            if type(num) == int:
+                self.result += num
+            if type(num) == list:
+                for listnum in num:
+                    self.result += listnum
             if type(num) == tuple:
                 for tuplenum in num:
                     self.result += tuplenum
                     # print self.result
         return self
     def subtract(self, *nums):
-        super(MathDojo2, self).subtract()
         for num in nums:
+            if type(num) == int:
+                self.result -= num
+            if type(num) == list:
+                for listnum in num:
+                    self.result -= listnum
             if type(num) == tuple:
                 for tuplenum in num:
                     self.result -= tuplenum
@@ -71,5 +79,5 @@ print "---->3"
 md3 = MathDojo3()
 print md3.add((1,2),[1,2],1).result
 print "---->3"
-d3 = MathDojo3()
+md3 = MathDojo3()
 print md3.subtract((1,2),[1,2],1).result
